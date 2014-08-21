@@ -34,16 +34,16 @@ WEBPAGE_TITLE=${2:-$DEFAULT_WEBPAGE_TITLE}
 echo "Using WEBPAGE_TITLE: $WEBPAGE_TITLE"
 
 # Default HTML source if not provided
-
 DEFAULT_HTML_SOURCE_FILE=video_html_template.html
 HTML_SOURCE_FILE=${3:-$DEFAULT_HTML_SOURCE_FILE}
 echo "Using HTML_SOURCE_FILE: $HTML_SOURCE_FILE"
-echo "HTML_SOURCE_FILE cat output below:"
 
-cat $HTML_SOURCE_FILE
+# echo "HTML_SOURCE_FILE cat output below:"
+# cat $HTML_SOURCE_FILE
 
-# sed -e "s;%PORT%;$1;g" -e "s;%HOST%;$2;g" -e "s;%DIR%;$3;g" template.txt > script.sh
+HTML_OUTPUT_FILE=$DEFAULT_WEBPAGE_TITLE.html
+HTML_OUTPUT_FILE=html_out.html
+echo "Using HTML_OUTPUT_FILE: $HTML_OUTPUT_FILE"
 
-# $ bash ./create.sh 1986 example.com /tmp
-# $ bash ./script.sh
-# Hello, I am a server running from /tmp and listening for connection at example.com on port 1986 and my configuration file is /tmp/server.conf
+# sed the new HTML file
+sed -e "s;%WEBPAGE_TITLE%;$WEBPAGE_TITLE;g" -e "s;%VIDEO_SOURCE%;$VIDEO_SOURCE;g" $HTML_SOURCE_FILE > $HTML_OUTPUT_FILE
